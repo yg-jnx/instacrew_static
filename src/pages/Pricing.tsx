@@ -8,10 +8,8 @@ import {
   Zap, 
   Building2, 
   Rocket,
-  ArrowRight,
   HelpCircle
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -36,7 +34,7 @@ const plans = [
       { name: "API access", included: false },
       { name: "Priority support", included: false },
     ],
-    cta: "Start Free Trial",
+    cta: "Get Started",
     popular: false,
   },
   {
@@ -55,7 +53,7 @@ const plans = [
       { name: "API access", included: true },
       { name: "Custom integrations", included: false },
     ],
-    cta: "Start Free Trial",
+    cta: "Get Started",
     popular: true,
   },
   {
@@ -240,12 +238,8 @@ export default function Pricing() {
                         : "bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground"
                     }`}
                     size="lg"
-                    asChild
                   >
-                    <Link to={plan.name === "Enterprise" ? "/help" : "/onboarding/business"}>
-                      {plan.cta}
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    {plan.cta}
                   </Button>
 
                   <ul className="space-y-3">
@@ -371,11 +365,8 @@ export default function Pricing() {
             <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
               No credit card required. Cancel anytime. Full access for 14 days.
             </p>
-            <Button size="lg" variant="secondary" className="group" asChild>
-              <Link to="/onboarding/business">
-                Get Started Free
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+            <Button size="lg" variant="secondary" className="group">
+              Get Started Free
             </Button>
           </motion.div>
         </div>

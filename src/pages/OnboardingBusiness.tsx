@@ -1,31 +1,36 @@
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { 
   Building2, 
   User, 
-  Mail, 
-  Phone, 
-  MapPin,
   FileText,
   CheckCircle2,
   ArrowRight,
-  ArrowLeft,
   Upload,
-  Shield
+  Shield,
+  Zap,
+  Clock,
+  Users,
+  BarChart3
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const steps = [
-  { id: 1, name: "Business Info", icon: Building2 },
-  { id: 2, name: "Contact Details", icon: User },
-  { id: 3, name: "Verification", icon: FileText },
-  { id: 4, name: "Complete", icon: CheckCircle2 },
+  { id: 1, name: "Business Info", icon: Building2, description: "Tell us about your company" },
+  { id: 2, name: "Contact Details", icon: User, description: "Add your contact information" },
+  { id: 3, name: "Verification", icon: FileText, description: "Upload verification documents" },
+  { id: 4, name: "Go Live", icon: CheckCircle2, description: "Start posting shifts" },
+];
+
+const benefits = [
+  { icon: Zap, title: "Quick Setup", description: "Get started in under 5 minutes" },
+  { icon: Clock, title: "Save Time", description: "80% faster than traditional hiring" },
+  { icon: Users, title: "Verified Crew", description: "Access pre-screened talent pool" },
+  { icon: BarChart3, title: "Full Analytics", description: "Track everything in real-time" },
 ];
 
 export default function OnboardingBusiness() {
-  const [currentStep, setCurrentStep] = useState(1);
-
   return (
     <Layout>
       <section className="min-h-screen py-12 bg-gradient-to-br from-primary/5 via-background to-accent/5 relative overflow-hidden">
@@ -47,285 +52,147 @@ export default function OnboardingBusiness() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               <Building2 className="w-4 h-4" />
               Business Onboarding
             </span>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Get Your Business Started
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Get Your Business{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                Up & Running
+              </span>
             </h1>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Complete your profile in just a few steps and start posting shifts today.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Join thousands of businesses already using InstaCrew to find reliable staff. 
+              Our simple onboarding process gets you posting shifts in minutes.
             </p>
           </motion.div>
 
-          {/* Progress Steps */}
-          <div className="max-w-3xl mx-auto mb-12">
-            <div className="flex items-center justify-between">
+          {/* Progress Steps Display */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="grid md:grid-cols-4 gap-6">
               {steps.map((step, index) => (
-                <div key={step.id} className="flex items-center">
-                  <motion.div
-                    className={`flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all ${
-                      currentStep >= step.id
-                        ? "bg-primary border-primary text-primary-foreground"
-                        : "border-border text-muted-foreground"
-                    }`}
-                    animate={currentStep === step.id ? { scale: [1, 1.1, 1] } : {}}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {currentStep > step.id ? (
-                      <CheckCircle2 className="w-6 h-6" />
-                    ) : (
-                      <step.icon className="w-5 h-5" />
-                    )}
-                  </motion.div>
-                  {index < steps.length - 1 && (
-                    <div className={`hidden md:block w-24 lg:w-32 h-1 mx-2 rounded ${
-                      currentStep > step.id ? "bg-primary" : "bg-border"
-                    }`} />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="hidden md:flex justify-between mt-2">
-              {steps.map((step) => (
-                <span
+                <motion.div
                   key={step.id}
-                  className={`text-sm ${
-                    currentStep >= step.id ? "text-primary" : "text-muted-foreground"
-                  }`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative"
                 >
-                  {step.name}
-                </span>
+                  <div className="bg-card rounded-2xl border border-border/50 p-6 text-center hover:border-primary/30 hover:shadow-lg transition-all">
+                    <motion.div
+                      className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      <step.icon className="w-6 h-6 text-primary-foreground" />
+                    </motion.div>
+                    <div className="text-xs text-primary font-medium mb-2">Step {step.id}</div>
+                    <h3 className="font-semibold text-foreground mb-1">{step.name}</h3>
+                    <p className="text-sm text-muted-foreground">{step.description}</p>
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-border" />
+                  )}
+                </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Form Card */}
+          {/* Mock Form Preview */}
           <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="max-w-2xl mx-auto mb-16"
           >
             <div className="bg-card rounded-2xl border border-border/50 p-8 shadow-xl">
-              {currentStep === 1 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Business Information</h2>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Business Name *
-                    </label>
-                    <div className="relative">
-                      <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <input
-                        type="text"
-                        placeholder="Enter your business name"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      />
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      This will be displayed to crew members
-                    </p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Business Type *
-                    </label>
-                    <select className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50">
-                      <option value="">Select business type</option>
-                      <option value="hospitality">Hospitality</option>
-                      <option value="events">Events & Entertainment</option>
-                      <option value="catering">Catering</option>
-                      <option value="security">Security</option>
-                      <option value="retail">Retail</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Business Address *
-                    </label>
-                    <div className="relative">
-                      <MapPin className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
-                      <textarea
-                        placeholder="Enter your business address"
-                        rows={3}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
-                      />
+              <h2 className="text-2xl font-bold text-foreground mb-6">Business Information</h2>
+              
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Business Name *
+                  </label>
+                  <div className="relative">
+                    <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <div className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-muted/50 text-muted-foreground">
+                      Your Business Name
                     </div>
                   </div>
                 </div>
-              )}
 
-              {currentStep === 2 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Contact Details</h2>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        First Name *
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        <input
-                          type="text"
-                          placeholder="John"
-                          className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Smith"
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Email Address *
-                    </label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <input
-                        type="email"
-                        placeholder="john@company.com"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      />
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      We'll send verification and updates to this email
-                    </p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Phone Number *
-                    </label>
-                    <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <input
-                        type="tel"
-                        placeholder="+44 7700 900000"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      />
-                    </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Business Type *
+                  </label>
+                  <div className="w-full px-4 py-3 rounded-xl border border-border bg-muted/50 text-muted-foreground">
+                    Select business type
                   </div>
                 </div>
-              )}
 
-              {currentStep === 3 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Business Verification</h2>
-                  <p className="text-muted-foreground mb-6">
-                    Upload documents to verify your business. This helps build trust with crew members.
-                  </p>
-                  
-                  <div className="space-y-4">
-                    {[
-                      { label: "Business Registration Certificate", status: "required" },
-                      { label: "Proof of Insurance", status: "required" },
-                      { label: "ID Verification (Director/Owner)", status: "optional" },
-                    ].map((doc, i) => (
-                      <div
-                        key={i}
-                        className="border-2 border-dashed border-border rounded-xl p-6 hover:border-primary/50 transition-colors cursor-pointer"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                              <Upload className="w-6 h-6 text-primary" />
-                            </div>
-                            <div>
-                              <p className="font-medium text-foreground">{doc.label}</p>
-                              <p className="text-sm text-muted-foreground">
-                                PDF, JPG, PNG up to 10MB
-                              </p>
-                            </div>
-                          </div>
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            doc.status === "required" 
-                              ? "bg-destructive/10 text-destructive" 
-                              : "bg-muted text-muted-foreground"
-                          }`}>
-                            {doc.status}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="bg-primary/5 rounded-xl p-4 flex items-start gap-3">
-                    <Shield className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Secure & Private</p>
-                      <p className="text-sm text-muted-foreground">
-                        Your documents are encrypted and stored securely. We never share your information.
-                      </p>
-                    </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Verification Documents
+                  </label>
+                  <div className="border-2 border-dashed border-border rounded-xl p-6 text-center">
+                    <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                    <p className="text-sm text-muted-foreground">Upload business documents</p>
                   </div>
                 </div>
-              )}
 
-              {currentStep === 4 && (
-                <div className="text-center py-8">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", duration: 0.5 }}
-                    className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6"
-                  >
-                    <CheckCircle2 className="w-10 h-10 text-primary" />
-                  </motion.div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">
-                    You're All Set!
-                  </h2>
-                  <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                    Your business account has been created. We'll verify your documents within 24 hours 
-                    and you'll be ready to post your first shift.
-                  </p>
-                  <div className="space-y-4">
-                    <Button size="lg" className="w-full md:w-auto">
-                      Go to Dashboard
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
+                <div className="bg-primary/5 rounded-xl p-4 flex items-start gap-3">
+                  <Shield className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-foreground">Secure & Private</p>
                     <p className="text-sm text-muted-foreground">
-                      Check your email for a confirmation link
+                      Your documents are encrypted and stored securely.
                     </p>
                   </div>
                 </div>
-              )}
+              </div>
 
-              {/* Navigation Buttons */}
-              {currentStep < 4 && (
-                <div className="flex justify-between mt-8 pt-6 border-t border-border">
-                  <Button
-                    variant="outline"
-                    onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
-                    disabled={currentStep === 1}
-                  >
-                    <ArrowLeft className="mr-2 w-4 h-4" />
-                    Back
-                  </Button>
-                  <Button onClick={() => setCurrentStep(Math.min(4, currentStep + 1))}>
-                    {currentStep === 3 ? "Complete Setup" : "Continue"}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </div>
-              )}
+              <div className="mt-8 text-center">
+                <p className="text-muted-foreground mb-4">Ready to get started?</p>
+                <Button size="lg" className="group" asChild>
+                  <Link to="/pricing">
+                    View Pricing Plans
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Benefits Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="text-2xl font-bold text-foreground text-center mb-8">
+              Why Businesses Love InstaCrew
+            </h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="bg-card/50 rounded-xl border border-border/50 p-5 text-center hover:border-primary/30 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <benefit.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-1">{benefit.title}</h3>
+                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
