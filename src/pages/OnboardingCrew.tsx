@@ -1,46 +1,42 @@
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { 
   User, 
-  Mail, 
-  Phone,
   FileText,
   CheckCircle2,
   ArrowRight,
-  ArrowLeft,
   Upload,
   Shield,
   Briefcase,
   Award,
-  MapPin
+  MapPin,
+  Star,
+  Wallet,
+  Clock
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const steps = [
-  { id: 1, name: "Personal Info", icon: User },
-  { id: 2, name: "Experience", icon: Briefcase },
-  { id: 3, name: "Documents", icon: FileText },
-  { id: 4, name: "Complete", icon: CheckCircle2 },
+  { id: 1, name: "Personal Info", icon: User, description: "Create your profile" },
+  { id: 2, name: "Experience", icon: Briefcase, description: "Add your skills" },
+  { id: 3, name: "Documents", icon: FileText, description: "Get verified" },
+  { id: 4, name: "Start Working", icon: CheckCircle2, description: "Apply to shifts" },
 ];
 
 const skills = [
   "Bartending", "Waiting", "Security", "Event Staff", "Catering",
-  "Kitchen Staff", "Cleaning", "Reception", "Promotional", "Other"
+  "Kitchen Staff", "Cleaning", "Reception"
+];
+
+const benefits = [
+  { icon: Clock, title: "Flexible Hours", description: "Work when you want" },
+  { icon: Wallet, title: "Fast Payments", description: "Get paid quickly" },
+  { icon: Star, title: "Build Reputation", description: "Earn great reviews" },
+  { icon: MapPin, title: "Work Nearby", description: "Find local shifts" },
 ];
 
 export default function OnboardingCrew() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-
-  const toggleSkill = (skill: string) => {
-    setSelectedSkills(prev =>
-      prev.includes(skill)
-        ? prev.filter(s => s !== skill)
-        : [...prev, skill]
-    );
-  };
-
   return (
     <Layout>
       <section className="min-h-screen py-12 bg-gradient-to-br from-accent/5 via-background to-primary/5 relative overflow-hidden">
@@ -62,335 +58,180 @@ export default function OnboardingCrew() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
               <User className="w-4 h-4" />
               Crew Member Signup
             </span>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Join the InstaCrew Team
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Join the{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">
+                InstaCrew Team
+              </span>
             </h1>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Create your profile and start finding shifts that match your skills and schedule.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Create your profile and start finding shifts that match your skills. 
+              Get verified once and access premium opportunities.
             </p>
           </motion.div>
 
-          {/* Progress Steps */}
-          <div className="max-w-3xl mx-auto mb-12">
-            <div className="flex items-center justify-between">
+          {/* Progress Steps Display */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="grid md:grid-cols-4 gap-6">
               {steps.map((step, index) => (
-                <div key={step.id} className="flex items-center">
-                  <motion.div
-                    className={`flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all ${
-                      currentStep >= step.id
-                        ? "bg-accent border-accent text-accent-foreground"
-                        : "border-border text-muted-foreground"
-                    }`}
-                    animate={currentStep === step.id ? { scale: [1, 1.1, 1] } : {}}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {currentStep > step.id ? (
-                      <CheckCircle2 className="w-6 h-6" />
-                    ) : (
-                      <step.icon className="w-5 h-5" />
-                    )}
-                  </motion.div>
-                  {index < steps.length - 1 && (
-                    <div className={`hidden md:block w-24 lg:w-32 h-1 mx-2 rounded ${
-                      currentStep > step.id ? "bg-accent" : "bg-border"
-                    }`} />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="hidden md:flex justify-between mt-2">
-              {steps.map((step) => (
-                <span
+                <motion.div
                   key={step.id}
-                  className={`text-sm ${
-                    currentStep >= step.id ? "text-accent" : "text-muted-foreground"
-                  }`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative"
                 >
-                  {step.name}
-                </span>
+                  <div className="bg-card rounded-2xl border border-border/50 p-6 text-center hover:border-accent/30 hover:shadow-lg transition-all">
+                    <motion.div
+                      className="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center mx-auto mb-4"
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                    >
+                      <step.icon className="w-6 h-6 text-accent-foreground" />
+                    </motion.div>
+                    <div className="text-xs text-accent font-medium mb-2">Step {step.id}</div>
+                    <h3 className="font-semibold text-foreground mb-1">{step.name}</h3>
+                    <p className="text-sm text-muted-foreground">{step.description}</p>
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-border" />
+                  )}
+                </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Form Card */}
+          {/* Mock Profile Preview */}
           <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="max-w-2xl mx-auto mb-16"
           >
             <div className="bg-card rounded-2xl border border-border/50 p-8 shadow-xl">
-              {currentStep === 1 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Personal Information</h2>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        First Name *
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        <input
-                          type="text"
-                          placeholder="Alex"
-                          className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Johnson"
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-                      />
-                    </div>
-                  </div>
-
+              <h2 className="text-2xl font-bold text-foreground mb-6">Your Profile</h2>
+              
+              <div className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Email Address *
+                      First Name
                     </label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <input
-                        type="email"
-                        placeholder="alex@email.com"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-                      />
+                    <div className="w-full px-4 py-3 rounded-xl border border-border bg-muted/50 text-muted-foreground">
+                      Alex
                     </div>
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Phone Number *
+                      Last Name
                     </label>
-                    <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <input
-                        type="tel"
-                        placeholder="+44 7700 900000"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-                      />
+                    <div className="w-full px-4 py-3 rounded-xl border border-border bg-muted/50 text-muted-foreground">
+                      Johnson
                     </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Location *
-                    </label>
-                    <div className="relative">
-                      <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <input
-                        type="text"
-                        placeholder="London, UK"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-                      />
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      We'll show you shifts near this location
-                    </p>
                   </div>
                 </div>
-              )}
 
-              {currentStep === 2 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Your Experience</h2>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-3">
-                      Skills & Expertise *
-                    </label>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Select all that apply. This helps us match you with relevant shifts.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.map((skill) => (
-                        <button
-                          key={skill}
-                          onClick={() => toggleSkill(skill)}
-                          className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                            selectedSkills.includes(skill)
-                              ? "bg-accent text-accent-foreground"
-                              : "bg-muted text-muted-foreground hover:bg-muted/80"
-                          }`}
-                        >
-                          {skill}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Years of Experience
-                    </label>
-                    <select className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50">
-                      <option value="">Select experience level</option>
-                      <option value="0-1">Less than 1 year</option>
-                      <option value="1-3">1-3 years</option>
-                      <option value="3-5">3-5 years</option>
-                      <option value="5+">5+ years</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Certifications (Optional)
-                    </label>
-                    <div className="relative">
-                      <Award className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
-                      <textarea
-                        placeholder="List any relevant certifications (e.g., SIA License, Food Hygiene, First Aid)"
-                        rows={3}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 resize-none"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      About You (Optional)
-                    </label>
-                    <textarea
-                      placeholder="Tell employers a bit about yourself and what makes you a great hire..."
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 resize-none"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      A good bio can help you stand out
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {currentStep === 3 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-6">Verification Documents</h2>
-                  <p className="text-muted-foreground mb-6">
-                    Upload your documents to get verified. Verified crew members get access to more shifts and higher pay rates.
-                  </p>
-                  
-                  <div className="space-y-4">
-                    {[
-                      { label: "Government-Issued ID", description: "Passport, Driver's License, or National ID", status: "required" },
-                      { label: "Right to Work Document", description: "Visa, work permit, or proof of residency", status: "required" },
-                      { label: "CV / Resume", description: "Your work history and experience", status: "optional" },
-                      { label: "Profile Photo", description: "Clear, professional headshot", status: "optional" },
-                    ].map((doc, i) => (
-                      <div
-                        key={i}
-                        className="border-2 border-dashed border-border rounded-xl p-6 hover:border-accent/50 transition-colors cursor-pointer"
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-3">
+                    Skills & Expertise
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {skills.map((skill, index) => (
+                      <motion.span
+                        key={skill}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 + index * 0.05 }}
+                        className={`px-4 py-2 rounded-full text-sm font-medium ${
+                          index < 3
+                            ? "bg-accent text-accent-foreground"
+                            : "bg-muted text-muted-foreground"
+                        }`}
                       >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                              <Upload className="w-6 h-6 text-accent" />
-                            </div>
-                            <div>
-                              <p className="font-medium text-foreground">{doc.label}</p>
-                              <p className="text-sm text-muted-foreground">
-                                {doc.description}
-                              </p>
-                            </div>
-                          </div>
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            doc.status === "required" 
-                              ? "bg-destructive/10 text-destructive" 
-                              : "bg-muted text-muted-foreground"
-                          }`}>
-                            {doc.status}
-                          </span>
-                        </div>
-                      </div>
+                        {skill}
+                      </motion.span>
                     ))}
                   </div>
+                </div>
 
-                  <div className="bg-accent/5 rounded-xl p-4 flex items-start gap-3">
-                    <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Your Privacy Matters</p>
-                      <p className="text-sm text-muted-foreground">
-                        Documents are encrypted and only used for verification. We comply with GDPR and never share your personal data.
-                      </p>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Certifications
+                  </label>
+                  <div className="relative">
+                    <Award className="absolute left-3 top-3 w-5 h-5 text-muted-foreground" />
+                    <div className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-muted/50 text-muted-foreground">
+                      SIA License, Food Hygiene Level 2
                     </div>
                   </div>
                 </div>
-              )}
 
-              {currentStep === 4 && (
-                <div className="text-center py-8">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", duration: 0.5 }}
-                    className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6"
-                  >
-                    <CheckCircle2 className="w-10 h-10 text-accent" />
-                  </motion.div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">
-                    Welcome to InstaCrew!
-                  </h2>
-                  <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                    Your profile is being verified. Once approved, you'll have access to hundreds of shifts near you.
-                  </p>
-                  
-                  <div className="bg-muted/50 rounded-xl p-6 mb-8 max-w-md mx-auto">
-                    <h3 className="font-semibold text-foreground mb-3">What happens next?</h3>
-                    <ul className="text-sm text-muted-foreground space-y-2 text-left">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent" />
-                        Document review (usually 24-48 hours)
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent" />
-                        Email notification when approved
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent" />
-                        Start browsing and applying to shifts
-                      </li>
-                    </ul>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Documents
+                  </label>
+                  <div className="border-2 border-dashed border-border rounded-xl p-6 text-center">
+                    <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                    <p className="text-sm text-muted-foreground">Upload ID & verification documents</p>
                   </div>
-
-                  <Button size="lg" className="bg-accent hover:bg-accent/90">
-                    Browse Available Shifts
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
                 </div>
-              )}
 
-              {/* Navigation Buttons */}
-              {currentStep < 4 && (
-                <div className="flex justify-between mt-8 pt-6 border-t border-border">
-                  <Button
-                    variant="outline"
-                    onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
-                    disabled={currentStep === 1}
-                  >
-                    <ArrowLeft className="mr-2 w-4 h-4" />
-                    Back
-                  </Button>
-                  <Button 
-                    onClick={() => setCurrentStep(Math.min(4, currentStep + 1))}
-                    className="bg-accent hover:bg-accent/90"
-                  >
-                    {currentStep === 3 ? "Complete Profile" : "Continue"}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
+                <div className="bg-accent/5 rounded-xl p-4 flex items-start gap-3">
+                  <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-foreground">Your Privacy Matters</p>
+                    <p className="text-sm text-muted-foreground">
+                      Documents are encrypted and only used for verification. GDPR compliant.
+                    </p>
+                  </div>
                 </div>
-              )}
+              </div>
+
+              <div className="mt-8 text-center">
+                <p className="text-muted-foreground mb-4">Ready to find shifts near you?</p>
+                <Button size="lg" className="group bg-accent hover:bg-accent/90" asChild>
+                  <Link to="/crew">
+                    Learn More About Crew
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Benefits Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="text-2xl font-bold text-foreground text-center mb-8">
+              Why Crew Members Love InstaCrew
+            </h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="bg-card/50 rounded-xl border border-border/50 p-5 text-center hover:border-accent/30 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-3">
+                    <benefit.icon className="w-6 h-6 text-accent" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-1">{benefit.title}</h3>
+                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>

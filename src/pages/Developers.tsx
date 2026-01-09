@@ -10,13 +10,13 @@ import {
   Calendar,
   FileText,
   CreditCard,
-  ArrowRight,
-  Copy,
-  Check,
   Terminal,
-  Book
+  Book,
+  Check,
+  Zap,
+  Globe,
+  Lock
 } from "lucide-react";
-import { useState } from "react";
 
 const resources = [
   { icon: Users, name: "Users", description: "Manage business and crew member accounts" },
@@ -26,8 +26,7 @@ const resources = [
   { icon: CreditCard, name: "Subscriptions", description: "Manage billing and subscription plans" },
 ];
 
-const codeExamples = {
-  auth: `// Authentication using API key
+const codeExample = `// Authentication using API key
 const response = await fetch('https://api.instacrew.com/v1/shifts', {
   method: 'GET',
   headers: {
@@ -36,10 +35,10 @@ const response = await fetch('https://api.instacrew.com/v1/shifts', {
   }
 });
 
-const shifts = await response.json();`,
+const shifts = await response.json();
 
-  createShift: `// Create a new shift
-const shift = await fetch('https://api.instacrew.com/v1/shifts', {
+// Create a new shift
+const newShift = await fetch('https://api.instacrew.com/v1/shifts', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',
@@ -49,40 +48,19 @@ const shift = await fetch('https://api.instacrew.com/v1/shifts', {
     title: 'Event Staff',
     location: 'London, UK',
     start_time: '2025-02-01T18:00:00Z',
-    end_time: '2025-02-01T23:00:00Z',
     hourly_rate: 14.00,
-    positions: 5,
-    requirements: ['Right to work', 'Smart dress code']
+    positions: 5
   })
-});`,
+});`;
 
-  webhook: `// Webhook payload example
-{
-  "event": "application.created",
-  "timestamp": "2025-01-15T10:30:00Z",
-  "data": {
-    "id": "app_abc123",
-    "shift_id": "shift_xyz789",
-    "crew_member": {
-      "id": "crew_456",
-      "name": "Alex Johnson",
-      "rating": 4.9
-    },
-    "status": "pending"
-  }
-}`,
-};
+const features = [
+  { icon: Zap, title: "RESTful API", description: "Clean, predictable endpoints" },
+  { icon: Globe, title: "99.9% Uptime", description: "Enterprise-grade reliability" },
+  { icon: Lock, title: "OAuth 2.0", description: "Secure authentication" },
+  { icon: Webhook, title: "Webhooks", description: "Real-time event notifications" },
+];
 
 export default function Developers() {
-  const [activeTab, setActiveTab] = useState<keyof typeof codeExamples>("auth");
-  const [copied, setCopied] = useState(false);
-
-  const copyCode = () => {
-    navigator.clipboard.writeText(codeExamples[activeTab]);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -122,8 +100,8 @@ export default function Developers() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" className="group">
+                <Key className="mr-2 w-4 h-4" />
                 Get API Keys
-                <Key className="ml-2 w-4 h-4" />
               </Button>
               <Button size="lg" variant="outline">
                 <Book className="mr-2 w-4 h-4" />
@@ -134,8 +112,33 @@ export default function Developers() {
         </div>
       </section>
 
+      {/* API Features */}
+      <section className="py-16 bg-muted/30">
+        <div className="container">
+          <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-card rounded-xl border border-border/50 p-5 text-center hover:border-primary/30 hover:shadow-lg transition-all"
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                  <feature.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* API Resources */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -171,8 +174,8 @@ export default function Developers() {
         </div>
       </section>
 
-      {/* Code Examples */}
-      <section className="py-20">
+      {/* Code Example */}
+      <section className="py-20 bg-muted/30">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
             <motion.div
@@ -190,23 +193,21 @@ export default function Developers() {
 
               <div className="space-y-4">
                 {[
-                  { title: "Authentication", description: "Secure API key-based authentication", tab: "auth" as const },
-                  { title: "Create Shifts", description: "Post new shifts programmatically", tab: "createShift" as const },
-                  { title: "Webhooks", description: "Real-time event notifications", tab: "webhook" as const },
+                  { title: "Authentication", description: "Secure API key-based authentication" },
+                  { title: "Create Shifts", description: "Post new shifts programmatically" },
+                  { title: "Webhooks", description: "Real-time event notifications" },
                 ].map((item, index) => (
-                  <motion.button
-                    key={item.tab}
-                    onClick={() => setActiveTab(item.tab)}
-                    whileHover={{ x: 5 }}
-                    className={`w-full text-left p-4 rounded-xl border transition-all ${
-                      activeTab === item.tab
-                        ? "bg-primary/10 border-primary/30"
-                        : "bg-card border-border/50 hover:border-primary/20"
-                    }`}
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="p-4 rounded-xl bg-card border border-border/50"
                   >
                     <h3 className="font-semibold text-foreground">{item.title}</h3>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </motion.button>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -222,34 +223,17 @@ export default function Developers() {
                   <div className="flex items-center gap-2">
                     <Terminal className="w-4 h-4 text-muted-foreground" />
                     <span className="text-sm font-medium text-foreground">
-                      {activeTab === "auth" && "Authentication"}
-                      {activeTab === "createShift" && "Create Shift"}
-                      {activeTab === "webhook" && "Webhook Payload"}
+                      Example Code
                     </span>
                   </div>
-                  <button
-                    onClick={copyCode}
-                    className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-3 h-3" />
-                        Copied!
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3 h-3" />
-                        Copy
-                      </>
-                    )}
-                  </button>
+                  <span className="text-xs text-muted-foreground">JavaScript</span>
                 </div>
                 <pre className="p-4 overflow-x-auto text-sm">
-                  <code className="text-muted-foreground">{codeExamples[activeTab]}</code>
+                  <code className="text-muted-foreground">{codeExample}</code>
                 </pre>
               </div>
 
-              {/* Floating badges */}
+              {/* Floating badge */}
               <motion.div
                 className="absolute -top-4 -right-4 bg-primary text-primary-foreground rounded-lg px-3 py-1.5 shadow-lg"
                 animate={{ y: [-2, 2, -2] }}
@@ -263,7 +247,7 @@ export default function Developers() {
       </section>
 
       {/* Webhooks Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="container max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -314,7 +298,7 @@ export default function Developers() {
       </section>
 
       {/* Security Section */}
-      <section className="py-20">
+      <section className="py-20 bg-muted/30">
         <div className="container max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -378,7 +362,6 @@ export default function Developers() {
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" variant="secondary" className="group">
                 Get API Keys
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
                 View Documentation
