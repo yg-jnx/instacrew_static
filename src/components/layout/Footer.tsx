@@ -125,7 +125,15 @@ export function Footer() {
             © {new Date().getFullYear()} InstaCrew. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
-            Made with ❤️ for businesses and crew everywhere
+            Developed by{" "}
+            <a 
+              href="https://jnxtechnology.co.uk/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
+              JNX Technology
+            </a>
           </p>
         </div>
       </div>
