@@ -112,9 +112,6 @@ export function Header() {
 
         {/* Desktop CTAs */}
         <div className="hidden lg:flex lg:items-center lg:gap-3">
-          <Button variant="ghost" asChild>
-            <Link to="/login">Log in</Link>
-          </Button>
           <Button asChild className="bg-primary hover:bg-primary/90">
             <Link to="/signup">Start free trial</Link>
           </Button>
