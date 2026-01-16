@@ -20,6 +20,7 @@ const footerLinks = {
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
     { name: "Cookie Policy", href: "/cookies" },
+    { name: "GDPR", href: "/gdpr" }, // Add this
   ],
 };
 
@@ -37,7 +38,7 @@ export function Footer() {
               <span className="text-xl font-bold text-foreground">InstaCrew</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              The shift marketplace that connects business owners with verified local crew—fast, simple, and reliable.
+              The shift marketplace that connects business owners with verified local crew fast, simple, and reliable.
             </p>
             <div className="mt-6 flex gap-4">
               <a
