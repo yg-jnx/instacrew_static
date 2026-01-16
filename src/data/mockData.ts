@@ -3,7 +3,7 @@
 export const heroContent = {
   headlines: [
     "Fill open shifts fast with verified local crew.",
-    "Post shifts, screen applicants, hire in hours—not days.",
+    "Post shifts, screen applicants, hire in hours, not days.",
     "One platform for shifts, verification, and time tracking.",
   ],
   taglines: [

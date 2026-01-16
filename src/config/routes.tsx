@@ -9,7 +9,6 @@ const Pricing = lazy(() => import("@/pages/Pricing"));
 const OnboardingBusiness = lazy(() => import("@/pages/OnboardingBusiness"));
 const OnboardingCrew = lazy(() => import("@/pages/OnboardingCrew"));
 const HelpCenter = lazy(() => import("@/pages/HelpCenter"));
-const Developers = lazy(() => import("@/pages/Developers"));
 
 // Lazy imports - Legal pages (NEW LOCATION)
 const PrivacyPolicy = lazy(() => import("@/pages/legal/PrivacyPolicy"));
@@ -74,11 +73,6 @@ export const routes = [
     path: "/help",
     element: <HelpCenter />,
     title: "Help Center",
-  },
-  {
-    path: "/developers",
-    element: <Developers />,
-    title: "Developer Docs",
   },
   // 404 - Must be last
   {

@@ -115,105 +115,106 @@ export function Hero() {
             >
               <Sparkles className="h-4 w-4" />
               <span>Trusted by 10,000+ businesses</span>
-            </motion.div>
+              </motion.div>
 
-            {/* Rotating headline */}
-            <div className="relative h-[140px] md:h-[120px] lg:h-[140px]">
-              <AnimatePresence mode="wait">
-                <motion.h1
-                  key={currentIndex}
-                  initial={{ opacity: 0, y: 30, rotateX: -15 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  exit={{ opacity: 0, y: -30, rotateX: 15 }}
-                  transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-                  className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  {heroContent.headlines[currentIndex]}
-                </motion.h1>
-              </AnimatePresence>
-            </div>
+              {/* Rotating headline - FIXED */}
+              <div className="relative min-h-[140px] md:min-h-[160px] lg:min-h-[180px] mb-4">
+                <AnimatePresence mode="wait">
+                  <motion.h1
+                    key={currentIndex}
+                    initial={{ opacity: 0, y: 30, rotateX: -15 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    exit={{ opacity: 0, y: -30, rotateX: 15 }}
+                    transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+                    className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl leading-tight"
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    {heroContent.headlines[currentIndex]}
+                  </motion.h1>
+                </AnimatePresence>
+              </div>
 
-            {/* Rotating tagline */}
-            <div className="relative h-[50px] md:h-[40px] mt-4">
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={`tagline-${currentIndex}`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-lg text-muted-foreground md:text-xl"
-                >
-                  {heroContent.taglines[currentIndex]}
-                </motion.p>
-              </AnimatePresence>
-            </div>
+              {/* Rotating tagline - FIXED */}
+              <div className="relative min-h-[60px] md:min-h-[70px] lg:min-h-[80px]">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={`tagline-${currentIndex}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-lg text-muted-foreground md:text-xl lg:text-2xl leading-relaxed"
+                  >
+                    {heroContent.taglines[currentIndex]}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
 
-            {/* Progress indicators */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 flex justify-center lg:justify-start gap-2"
-            >
-              {heroContent.headlines.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-500 ${
-                    index === currentIndex
-                      ? "w-10 bg-gradient-to-r from-primary to-accent"
-                      : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                  }`}
-                  aria-label={`Show headline ${index + 1}`}
-                />
-              ))}
-            </motion.div>
-
-            {/* CTAs */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="mt-10 flex flex-col items-center lg:items-start justify-center gap-4 sm:flex-row"
-            >
-              <Button size="lg" asChild className="min-w-[220px] gap-2 shadow-glow group relative overflow-hidden">
-                <Link to="/signup">
-                  <span className="relative z-10 flex items-center gap-2">
-                    Start 14-day free trial
-                    <motion.span
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </motion.span>
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-accent to-accent/80"
-                    initial={{ x: "100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
+              {/* Progress indicators - adjusted spacing */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="mt-6 flex justify-center lg:justify-start gap-2"
+              >
+                {heroContent.headlines.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`h-2 rounded-full transition-all duration-500 ${
+                      index === currentIndex
+                        ? "w-10 bg-gradient-to-r from-primary to-accent"
+                        : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    }`}
+                    aria-label={`Show headline ${index + 1}`}
                   />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="min-w-[220px] gap-2 group">
-                <Link to="#how-it-works">
-                  <Play className="h-4 w-4 transition-transform group-hover:scale-110" />
-                  See how it works
-                </Link>
-              </Button>
-            </motion.div>
-
-            {/* Trust note */}
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="mt-8 text-sm text-muted-foreground"
-            >
-              No credit card required • 14-day free trial • Cancel anytime
-            </motion.p>
+                ))}
+              </motion.div>
+              
+              {/* CTAs - adjusted spacing */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-8 flex flex-col items-center lg:items-start justify-center gap-4 sm:flex-row"
+              >
+                <Button size="lg" asChild className="min-w-[220px] gap-2 shadow-glow group relative overflow-hidden">
+                  <Link to="/signup">
+                    <span className="relative z-10 flex items-center gap-2">
+                      Start 14-day free trial
+                      <motion.span
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                      </motion.span>
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-accent to-accent/80"
+                      initial={{ x: "100%" }}
+                      whileHover={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="min-w-[220px] gap-2 group">
+                  <Link to="#how-it-works">
+                    <Play className="h-4 w-4 transition-transform group-hover:scale-110" />
+                    See how it works
+                  </Link>
+                </Button>
+              </motion.div>
+              
+              {/* Trust note - adjusted spacing */}
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="mt-6 text-sm text-muted-foreground"
+              >
+                No credit card required • 14-day free trial • Cancel anytime
+              </motion.p>
+              
           </div>
 
           {/* 3D Visual Display */}
