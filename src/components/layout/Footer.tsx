@@ -20,7 +20,8 @@ const footerLinks = {
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
     { name: "Cookie Policy", href: "/cookies" },
-    { name: "GDPR", href: "/gdpr" }, // Add this
+    { name: "GDPR", href: "/gdpr" },
+    { name: "Delete Account", href: "/account-deletion" },
   ],
 };
 

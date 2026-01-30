@@ -65,8 +65,8 @@ export const howItWorks = {
     },
     {
       step: 3,
-      title: "Track & Pay",
-      description: "Monitor clock-ins, approve hours, and manage payments—all from one dashboard.",
+      title: "Track & Manage",
+      description: "Monitor clock-ins, approve hours, and manage all from one dashboard.",
     },
   ],
   crew: [
@@ -264,32 +264,32 @@ export const faqCategories = {
       a: "Yes, but be mindful of scheduling conflicts. The app warns you about overlapping applications.",
     },
   ],
-  payments: [
-    {
-      q: "How do payments work?",
-      a: "Businesses pay through Stripe. Crew members receive payments to their linked bank account after shift completion and approval.",
-    },
-    {
-      q: "When will I get paid for a shift?",
-      a: "Payments are processed within 2-3 business days after the business approves your timesheet.",
-    },
-    {
-      q: "What payment methods do you accept?",
-      a: "We accept all major credit/debit cards, bank transfers, and digital wallets through our secure Stripe integration.",
-    },
-    {
-      q: "How do I view my payment history?",
-      a: "Go to 'Earnings' in your dashboard to see all past payments, pending amounts, and download statements.",
-    },
-    {
-      q: "Are there any fees for crew members?",
-      a: "InstaCrew is free for crew members. You receive 100% of your agreed shift rate.",
-    },
-    {
-      q: "How do I dispute a payment issue?",
-      a: "Open the shift in your history and click 'Raise Dispute'. Our team reviews within 48 hours.",
-    },
-  ],
+  // payments: [
+  //   {
+  //     q: "How do payments work?",
+  //     a: "Businesses pay through Stripe. Crew members receive payments to their linked bank account after shift completion and approval.",
+  //   },
+  //   {
+  //     q: "When will I get paid for a shift?",
+  //     a: "Payments are processed within 2-3 business days after the business approves your timesheet.",
+  //   },
+  //   {
+  //     q: "What payment methods do you accept?",
+  //     a: "We accept all major credit/debit cards, bank transfers, and digital wallets through our secure Stripe integration.",
+  //   },
+  //   {
+  //     q: "How do I view my payment history?",
+  //     a: "Go to 'Earnings' in your dashboard to see all past payments, pending amounts, and download statements.",
+  //   },
+  //   {
+  //     q: "Are there any fees for crew members?",
+  //     a: "InstaCrew is free for crew members. You receive 100% of your agreed shift rate.",
+  //   },
+  //   {
+  //     q: "How do I dispute a payment issue?",
+  //     a: "Open the shift in your history and click 'Raise Dispute'. Our team reviews within 48 hours.",
+  //   },
+  // ],
   verification: [
     {
       q: "What documents do I need for verification?",

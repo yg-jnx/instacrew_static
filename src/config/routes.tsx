@@ -15,6 +15,7 @@ const PrivacyPolicy = lazy(() => import("@/pages/legal/PrivacyPolicy"));
 const TermsAndConditions = lazy(() => import("@/pages/legal/TermsAndConditions"));
 const CookiePolicy = lazy(() => import("@/pages/legal/CookiePolicy"));
 const GDPR = lazy(() => import("@/pages/legal/GDPR"));
+const AccountDeletion = lazy(() => import("@/pages/legal/AccountDeletion"));
 
 export const routes = [
   {
@@ -67,6 +68,11 @@ export const routes = [
     path: "/gdpr",
     element: <GDPR />,
     title: "GDPR & Data Protection",
+  },
+  {
+    path: "/account-deletion", // ✨ NEW
+    element: <AccountDeletion />,
+    title: "Account Deletion Request",
   },
   // Support & Resources
   {
