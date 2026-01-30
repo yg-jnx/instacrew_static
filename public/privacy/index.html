@@ -1,276 +1,61 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Privacy Policy | InstaCrew</title>
     <meta
-      name="description"
-      content="Privacy Policy for JNX Technology Ltd (trading as InstaCrew)."
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <style>
-      :root {
-        --bg: #0b0f19;
-        --surface: rgba(255, 255, 255, 0.06);
-        --border: rgba(255, 255, 255, 0.12);
-        --text: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.7);
-        --primary: #7c3aed;
-        --accent: #22c55e;
-        --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-        --radius: 18px;
-        --max: 980px;
-        --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
-          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      }
+    <title>Privacy Policy | InstaCrew</title>
+    <meta name="robots" content="index,follow" />
 
-      * { box-sizing: border-box; }
+    <!-- Minimal, clean loader to avoid blank screen -->
+    <style>
+      html, body { height: 100%; }
       body {
         margin: 0;
-        font-family: var(--font);
-        color: var(--text);
-        background:
-          radial-gradient(900px 500px at 18% 10%, rgba(124, 58, 237, 0.16), transparent 60%),
-          radial-gradient(900px 500px at 88% 18%, rgba(34, 197, 94, 0.12), transparent 55%),
-          radial-gradient(900px 500px at 50% 92%, rgba(124, 58, 237, 0.10), transparent 55%),
-          var(--bg);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: #0b0b0f;
+        color: #fff;
       }
-
-      .wrap { padding: 56px 18px 80px; }
-      .container { max-width: var(--max); margin: 0 auto; }
-
-      .hero { text-align: center; padding: 28px 0 18px; }
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(124, 58, 237, 0.25);
-        background: rgba(124, 58, 237, 0.12);
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: 600;
-        font-size: 13px;
-        letter-spacing: 0.2px;
+      .wrap {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 24px;
       }
-
-      h1 {
-        margin: 18px 0 10px;
-        font-size: clamp(30px, 4vw, 44px);
-        line-height: 1.12;
-        letter-spacing: -0.02em;
-      }
-
-      .lead {
-        margin: 0 auto;
-        max-width: 70ch;
-        color: var(--muted);
-        font-size: clamp(16px, 2.2vw, 19px);
-        line-height: 1.65;
-      }
-
-      .meta {
-        margin-top: 10px;
-        color: rgba(255,255,255,0.65);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-
       .card {
-        margin-top: 16px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 22px;
+        width: min(560px, 100%);
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 16px;
+        padding: 20px;
+        background: rgba(255,255,255,.04);
       }
-
-      .card h2 {
-        margin: 0 0 10px;
-        font-size: 18px;
-        letter-spacing: -0.01em;
-      }
-
-      .card p { margin: 10px 0; color: var(--muted); line-height: 1.7; }
-      .card ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-      .card li { margin: 6px 0; line-height: 1.55; }
-
-      .contact {
-        margin-top: 16px;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(34, 197, 94, 0.12));
-        border: 1px solid rgba(124, 58, 237, 0.22);
-        border-radius: var(--radius);
-        padding: 22px;
-      }
-
-      .contact h2 { margin: 0 0 10px; font-size: 18px; }
-      .contact ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-      .contact li { margin: 6px 0; line-height: 1.55; }
-
-      a { color: rgba(255,255,255,0.92); }
-      .small { font-size: 13px; color: rgba(255,255,255,0.65); }
+      .muted { opacity: .75; font-size: 14px; line-height: 1.4; }
     </style>
+
+    <script>
+      // Preserve the intended SPA route so your existing app renders the same page/layout/CSS.
+      // We use sessionStorage to avoid polluting query params.
+      sessionStorage.setItem("__instacrew_boot_route", "/privacy");
+    </script>
+
+    <!-- Load your existing built app (this keeps content/css/layout unchanged). -->
+    <!-- These asset paths must match your deployed build output. -->
+    <link rel="stylesheet" href="/assets/index-DW8MERhP.css" />
+    <script type="module" src="/assets/index-DY2k5Gwk.js"></script>
   </head>
 
   <body>
-    <main class="wrap">
-      <div class="container">
-        <header class="hero">
-          <div class="badge">Legal</div>
-          <h1>Privacy Policy</h1>
-          <p class="lead">
-            This Privacy Policy explains how personal data is collected, used, stored, shared, and protected when you use the InstaCrew platform. [file:4]
-          </p>
-          <div class="meta">
-            <div><strong>JNX Technology Ltd (trading as InstaCrew)</strong></div>
-            <div><strong>Last updated:</strong> 11/01/2016</div>
+    <div id="root">
+      <div class="wrap">
+        <div class="card">
+          <div style="font-weight: 700; margin-bottom: 8px;">Loading…</div>
+          <div class="muted">
+            Redirecting you to the Privacy Policy page.
           </div>
-        </header>
-
-        <section class="card">
-          <h2>1. Introduction and purpose</h2>
-          <p>
-            InstaCrew is a software product owned and operated by <strong>JNX Technology Ltd</strong>, trading as <strong>InstaCrew</strong>. [file:4]
-          </p>
-          <p>
-            JNX Technology Ltd is committed to complying with applicable data protection legislation including the <strong>UK GDPR</strong> and the <strong>Data Protection Act 2018</strong>. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>2. Data controller details</h2>
-          <p>
-            For the purposes of UK data protection law, <strong>JNX Technology Ltd trading as InstaCrew</strong> is the <strong>data controller</strong> for personal data processed through the Platform, unless stated otherwise. [file:4]
-          </p>
-          <ul>
-            <li><strong>Registered office:</strong> 71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ [file:4]</li>
-            <li><strong>Company:</strong> JNX Technology Ltd [file:4]</li>
-            <li><strong>Contact email:</strong> <a href="mailto:info@jnxtechnology.co.uk">info@jnxtechnology.co.uk</a> [file:4]</li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <h2>3. Scope</h2>
-          <p>This Privacy Policy applies to: workers, businesses, and website visitors. [file:4]</p>
-          <p>
-            It does not apply to personal data processed independently by Businesses outside the Platform (where those Businesses act as separate data controllers). [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>4. Categories of personal data</h2>
-          <p>We may collect and process categories including identity, contact, account, work/platform, technical, usage, and communications data. [file:4]</p>
-          <p class="small">
-            We do not intentionally collect special category data unless required by law or expressly provided by the user. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>5. How personal data is collected</h2>
-          <ul>
-            <li>Directly from users during registration and profile completion. [file:4]</li>
-            <li>Through use of the Platform and its features. [file:4]</li>
-            <li>Through communications with customer support. [file:4]</li>
-            <li>Automatically via cookies, log files, and analytics technologies. [file:4]</li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <h2>6. Lawful bases for processing</h2>
-          <p>
-            Processing occurs only where a lawful basis exists under UK GDPR, including performance of a contract, legal obligation, legitimate interests, and consent where applicable. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>7. Purposes of processing</h2>
-          <p>
-            Purposes include account administration, facilitating communications, booking/administration of shifts, platform security and fraud prevention, improving functionality, and compliance with legal obligations. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>8. Data sharing and disclosure</h2>
-          <p>
-            Personal data may be shared with other users where necessary, service providers, professional advisers, and public authorities where legally required. [file:4]
-          </p>
-          <p class="small">
-            Third-party recipients are subject to appropriate contractual and security obligations. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>9. Data processor arrangements</h2>
-          <p>
-            In some circumstances, JNX Technology Ltd may act as a data processor on behalf of Businesses; processing is governed by written terms under Article 28 UK GDPR. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>10. International data transfers</h2>
-          <p>
-            Where personal data is transferred outside the UK, appropriate safeguards are used, including adequacy regulations or approved contractual protections. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>11. Data security</h2>
-          <p>
-            Appropriate technical and organisational measures are used to protect personal data; access is limited to authorised personnel. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>12. Data retention</h2>
-          <p>
-            Personal data is retained only as long as needed for the purposes it was collected for, including legal, accounting, and regulatory obligations; retention periods are reviewed periodically. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>13. Individual rights</h2>
-          <p>
-            Individuals have rights under UK GDPR including access, rectification, erasure (where applicable), restriction/objection, and data portability. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>14. Marketing communications</h2>
-          <p>
-            Marketing communications are sent only where permitted by law; individuals may opt out at any time without affecting service-related communications. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>15. Cookies</h2>
-          <p>
-            The Platform uses cookies and similar technologies; further details are available in the InstaCrew Cookie Policy. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>16. Children’s data</h2>
-          <p>
-            The Platform is not intended for individuals under 18 and we do not knowingly collect personal data from children. [file:4]
-          </p>
-        </section>
-
-        <section class="card">
-          <h2>17. Changes to this policy</h2>
-          <p>
-            This Privacy Policy may be updated from time to time. The most current version will always be available on the Platform. [file:4]
-          </p>
-        </section>
-
-        <section class="contact">
-          <h2>Contact</h2>
-          <p class="small">If you have questions about this policy, contact us:</p>
-          <ul>
-            <li><strong>Email:</strong> <a href="mailto:info@jnxtechnology.co.uk">info@jnxtechnology.co.uk</a> [file:4]</li>
-            <li><strong>Registered office:</strong> 71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ [file:4]</li>
-            <li><strong>Company:</strong> JNX Technology Ltd (trading as InstaCrew) [file:4]</li>
-          </ul>
-        </section>
+        </div>
       </div>
-    </main>
+    </div>
   </body>
 </html>

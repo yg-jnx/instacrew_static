@@ -1,318 +1,57 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Account Deletion | InstaCrew</title>
     <meta
-      name="description"
-      content="Request deletion of your InstaCrew account and associated personal data."
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <style>
-      :root {
-        --bg: #0b0f19;
-        --surface: rgba(255, 255, 255, 0.06);
-        --surface2: rgba(255, 255, 255, 0.08);
-        --border: rgba(255, 255, 255, 0.12);
-        --text: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.7);
-        --muted2: rgba(255, 255, 255, 0.6);
-        --primary: #7c3aed;
-        --accent: #22c55e;
-        --danger: #ef4444;
-        --ring: rgba(124, 58, 237, 0.35);
-        --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-        --radius: 18px;
-        --max: 920px;
-        --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
-          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      }
+    <title>Account Deletion | InstaCrew</title>
+    <meta name="robots" content="index,follow" />
 
-      * { box-sizing: border-box; }
+    <style>
+      html, body { height: 100%; }
       body {
         margin: 0;
-        font-family: var(--font);
-        color: var(--text);
-        background:
-          radial-gradient(900px 500px at 12% 10%, rgba(239, 68, 68, 0.14), transparent 60%),
-          radial-gradient(900px 500px at 88% 20%, rgba(124, 58, 237, 0.16), transparent 60%),
-          radial-gradient(900px 500px at 55% 85%, rgba(34, 197, 94, 0.10), transparent 55%),
-          var(--bg);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: #0b0b0f;
+        color: #fff;
       }
-
-      a { color: inherit; }
-      .wrap { padding: 56px 18px 80px; }
-      .container { max-width: var(--max); margin: 0 auto; }
-
-      .hero {
-        padding: 28px 0 24px;
-        text-align: center;
+      .wrap {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 24px;
       }
-
-      .badge {
-        display: inline-flex;
-        gap: 10px;
-        align-items: center;
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(239, 68, 68, 0.25);
-        background: rgba(239, 68, 68, 0.12);
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: 600;
-        font-size: 13px;
-        letter-spacing: 0.2px;
-      }
-
-      h1 {
-        margin: 18px 0 10px;
-        font-size: clamp(30px, 4vw, 44px);
-        line-height: 1.12;
-        letter-spacing: -0.02em;
-      }
-
-      .lead {
-        margin: 0 auto;
-        max-width: 64ch;
-        color: var(--muted);
-        font-size: clamp(16px, 2.2vw, 19px);
-        line-height: 1.6;
-      }
-
       .card {
-        margin-top: 16px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 22px;
+        width: min(560px, 100%);
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 16px;
+        padding: 20px;
+        background: rgba(255,255,255,.04);
       }
-
-      .card h2 {
-        margin: 0 0 10px;
-        font-size: 18px;
-        letter-spacing: -0.01em;
-      }
-
-      .card p { margin: 10px 0; color: var(--muted); line-height: 1.65; }
-      .card ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-      .card li { margin: 6px 0; line-height: 1.55; }
-
-      .grid {
-        display: grid;
-        gap: 14px;
-        grid-template-columns: 1fr;
-      }
-
-      @media (min-width: 900px) {
-        .grid { grid-template-columns: 1fr 1fr; }
-      }
-
-      .form {
-        display: grid;
-        gap: 14px;
-        margin-top: 12px;
-      }
-
-      label {
-        display: block;
-        font-size: 13px;
-        font-weight: 600;
-        color: rgba(255,255,255,0.88);
-        margin-bottom: 7px;
-      }
-
-      input, select, textarea {
-        width: 100%;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.14);
-        background: rgba(0,0,0,0.18);
-        color: var(--text);
-        padding: 12px 12px;
-        font: inherit;
-        outline: none;
-      }
-
-      textarea { min-height: 120px; resize: vertical; }
-
-      input:focus, select:focus, textarea:focus {
-        border-color: rgba(124, 58, 237, 0.7);
-        box-shadow: 0 0 0 4px var(--ring);
-      }
-
-      .hint {
-        margin-top: 8px;
-        color: var(--muted2);
-        font-size: 12px;
-        line-height: 1.45;
-      }
-
-      .notice {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        padding: 14px;
-        border-radius: 14px;
-        border: 1px solid rgba(239, 68, 68, 0.25);
-        background: rgba(239, 68, 68, 0.10);
-        color: rgba(255,255,255,0.86);
-      }
-
-      .notice strong { color: rgba(255,255,255,0.92); }
-      .notice .icon {
-        width: 34px; height: 34px;
-        border-radius: 12px;
-        display: grid; place-items: center;
-        background: rgba(239, 68, 68, 0.14);
-        border: 1px solid rgba(239, 68, 68, 0.22);
-        flex: 0 0 auto;
-      }
-
-      .btn {
-        display: inline-flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border: 0;
-        border-radius: 14px;
-        padding: 12px 14px;
-        font-weight: 700;
-        cursor: pointer;
-        background: linear-gradient(135deg, rgba(239,68,68,0.95), rgba(239,68,68,0.75));
-        color: white;
-      }
-
-      .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-      .success {
-        display: none;
-        margin-top: 14px;
-        padding: 14px;
-        border-radius: 14px;
-        border: 1px solid rgba(34, 197, 94, 0.25);
-        background: rgba(34, 197, 94, 0.10);
-        color: rgba(255,255,255,0.88);
-      }
-
-      .footer-card {
-        margin-top: 16px;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(34, 197, 94, 0.12));
-        border: 1px solid rgba(124, 58, 237, 0.22);
-        border-radius: var(--radius);
-        padding: 22px;
-      }
-
-      .footer-card h2 { margin: 0 0 10px; font-size: 18px; }
-      .footer-card p, .footer-card li { color: var(--muted); }
-      .footer-card ul { margin: 10px 0 0; padding-left: 18px; }
-
-      .small { font-size: 13px; color: var(--muted2); }
+      .muted { opacity: .75; font-size: 14px; line-height: 1.4; }
     </style>
+
+    <script>
+      sessionStorage.setItem("__instacrew_boot_route", "/account-deletion");
+    </script>
+
+    <!-- Keep the exact same CSS/JS your current site uses -->
+    <link rel="stylesheet" href="/assets/index-DW8MERhP.css" />
+    <script type="module" src="/assets/index-DY2k5Gwk.js"></script>
   </head>
 
   <body>
-    <main class="wrap">
-      <div class="container">
-        <header class="hero">
-          <div class="badge" aria-label="Account management">
-            Account Management
+    <div id="root">
+      <div class="wrap">
+        <div class="card">
+          <div style="font-weight: 700; margin-bottom: 8px;">Loading…</div>
+          <div class="muted">
+            Redirecting you to the Account Deletion page.
           </div>
-          <h1>Request Account Deletion</h1>
-          <p class="lead">
-            You can request deletion of your <strong>InstaCrew</strong> account and associated personal data using the form below. [file:25]
-          </p>
-        </header>
-
-        <section class="grid">
-          <div class="card">
-            <h2>Before you delete</h2>
-            <p>Please note the following before submitting your deletion request:</p>
-            <ul>
-              <li>This action is <strong>permanent</strong> and cannot be undone.</li>
-              <li>Active bookings or pending shifts may be cancelled.</li>
-              <li>Certain information may be retained where required by law. [file:25]</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h2>Processing timeline</h2>
-            <p>
-              Once submitted, your request will be reviewed and processed within <strong>30 days</strong> in accordance with GDPR. [file:25]
-            </p>
-          </div>
-        </section>
-
-        <section class="card" aria-labelledby="retention">
-          <h2 id="retention">Data retention</h2>
-          <p>
-            Certain information (such as invoices or records required for legal or regulatory purposes) may be retained where required by law. [file:25]
-          </p>
-        </section>
-
-        <section class="card" aria-labelledby="form">
-          <h2 id="form">Submit deletion request</h2>
-
-          <div class="notice" role="note" aria-label="Important notice">
-            <div class="icon">!</div>
-            <div>
-              By submitting this form, you confirm you understand the request is permanent and will be processed under GDPR timeframes. [file:25]
-            </div>
-          </div>
-
-          <form class="form" id="deletionForm">
-            <div>
-              <label for="email">Account email address *</label>
-              <input id="email" name="email" type="email" placeholder="your.email@example.com" required />
-              <div class="hint">Enter the email address associated with your InstaCrew account.</div>
-            </div>
-
-            <div>
-              <label for="reason">Reason for deletion *</label>
-              <select id="reason" name="reason" required>
-                <option value="">Select a reason…</option>
-                <option value="no-longer-needed">No longer need the service</option>
-                <option value="privacy-concerns">Privacy concerns</option>
-                <option value="found-alternative">Found alternative solution</option>
-                <option value="technical-issues">Technical issues</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="additionalInfo">Additional information (optional)</label>
-              <textarea id="additionalInfo" name="additionalInfo" placeholder="Please provide any additional details..."></textarea>
-            </div>
-
-            <button class="btn" type="submit">Submit deletion request</button>
-            <div class="success" id="successMsg">
-              Request submitted. We will process it within 30 days and contact you by email. [file:25]
-            </div>
-
-            <p class="small">
-              If the form doesn’t work, email us at
-              <a href="mailto:support@instacrew.co.uk">support@instacrew.co.uk</a>.
-            </p>
-          </form>
-        </section>
-
-        <section class="footer-card" aria-labelledby="help">
-          <h2 id="help">Need help?</h2>
-          <p>If you have questions about account deletion, contact us:</p>
-          <ul>
-            <li><strong>Email:</strong> <a href="mailto:support@instacrew.co.uk">support@instacrew.co.uk</a></li>
-          </ul>
-        </section>
+        </div>
       </div>
-    </main>
-
-    <script>
-      // Simple no-backend handler: shows success message.
-      // You can wire this to your real API/EmailJS later.
-      document.getElementById("deletionForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        document.getElementById("successMsg").style.display = "block";
-        this.reset();
-      });
-    </script>
+    </div>
   </body>
 </html>
