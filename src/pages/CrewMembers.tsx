@@ -109,7 +109,7 @@ export default function CrewMembers() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" className="group bg-accent hover:bg-accent/90" asChild>
-                  <Link to="/onboarding/crew">
+                  <Link to="#">
                     Join as Crew
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>

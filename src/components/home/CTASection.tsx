@@ -100,7 +100,7 @@ export function CTASection() {
                   className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/90"
                 >
                   Join thousands of businesses and crew members already using InstaCrew. 
-                  Start your 14-day free trial today—no credit card required.
+                  Start your 30-day free trial today no credit card required.
                 </motion.p>
                 
                 <motion.div 
@@ -148,7 +148,7 @@ export function CTASection() {
                   transition={{ delay: 0.6 }}
                   className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-primary-foreground/70"
                 >
-                  {["No credit card required", "14-day free trial", "Cancel anytime"].map((item, i) => (
+                  {["No credit card required", "30-day free trial", "Cancel anytime"].map((item, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <div className="h-1.5 w-1.5 rounded-full bg-primary-foreground/50" />
                       <span>{item}</span>

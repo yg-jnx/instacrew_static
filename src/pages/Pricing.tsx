@@ -1,13 +1,12 @@
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { 
   Check, 
   X, 
+  Gift, 
   Zap, 
-  Building2, 
-  Rocket,
+  TrendingUp,
   HelpCircle
 } from "lucide-react";
 import {
@@ -19,68 +18,62 @@ import {
 
 const plans = [
   {
-    name: "Starter",
-    description: "Perfect for small businesses just getting started",
-    monthlyPrice: 49,
-    sixMonthPrice: 39,
-    icon: Zap,
+    name: "Trial",
+    description: "Try InstaCrew free for 30 days with full features",
+    price: 0,
+    billingPeriod: "30 days",
+    icon: Gift,
     features: [
-      { name: "Up to 20 shifts/month", included: true },
-      { name: "Up to 50 crew members", included: true },
+      { name: "Up to 20+ shifts/month", included: true },
+      { name: "Up to 50+ crew members", included: true },
       { name: "Basic analytics", included: true },
       { name: "Email support", included: true },
-      { name: "1 location", included: true },
+      { name: "Multiple locations", included: true },
       { name: "Advanced reporting", included: false },
-      { name: "API access", included: false },
       { name: "Priority support", included: false },
     ],
-    cta: "Get Started",
+    cta: "Start Free Trial",
     popular: false,
   },
   {
-    name: "Professional",
-    description: "For growing businesses with multiple locations",
-    monthlyPrice: 99,
-    sixMonthPrice: 79,
-    icon: Building2,
+    name: "Monthly",
+    description: "Perfect for businesses that need flexibility",
+    price: 19.99,
+    billingPeriod: "month",
+    icon: Zap,
     features: [
-      { name: "Unlimited shifts", included: true },
-      { name: "Unlimited crew members", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Priority email & chat support", included: true },
-      { name: "Up to 5 locations", included: true },
+      { name: "Unlimited shifts/month", included: true },
+      { name: "Email support", included: true },
+      { name: "Multiple locations", included: true },
       { name: "Advanced reporting", included: true },
-      { name: "API access", included: true },
-      { name: "Custom integrations", included: false },
+      { name: "Priority support", included: true },
     ],
     cta: "Get Started",
     popular: true,
   },
   {
-    name: "Enterprise",
-    description: "For large organizations with complex needs",
-    monthlyPrice: 249,
-    sixMonthPrice: 199,
-    icon: Rocket,
+    name: "Six Monthly",
+    description: "Best value for committed businesses - Save 20%",
+    price: 99.99,
+    originalPrice: 119.94,
+    billingPeriod: "6 months",
+    icon: TrendingUp,
     features: [
-      { name: "Everything in Professional", included: true },
-      { name: "Unlimited locations", included: true },
-      { name: "Custom analytics & dashboards", included: true },
-      { name: "Dedicated account manager", included: true },
-      { name: "24/7 phone support", included: true },
-      { name: "Custom integrations", included: true },
-      { name: "SLA guarantees", included: true },
-      { name: "On-premise deployment option", included: true },
+      { name: "Unlimited shifts/month", included: true },
+      { name: "Priority email support", included: true },
+      { name: "Multiple locations", included: true },
+      { name: "Advanced reporting", included: true },
+      { name: "Priority support", included: true },
     ],
-    cta: "Contact Sales",
+    cta: "Get Started",
     popular: false,
   },
 ];
 
 const faqs = [
   {
-    question: "How does the 14-day free trial work?",
-    answer: "Start using InstaCrew immediately with full access to all features. No credit card required. At the end of 14 days, choose the plan that fits your needs.",
+    question: "How does the 30-day free trial work?",
+    answer: "Start using InstaCrew immediately with full access to all features. No credit card required. At the end of 30 days, choose the plan that fits your needs.",
   },
   {
     question: "Can I change plans later?",
@@ -105,8 +98,6 @@ const faqs = [
 ];
 
 export default function Pricing() {
-  const [isAnnual, setIsAnnual] = useState(false);
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -139,35 +130,8 @@ export default function Pricing() {
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Choose the plan that's right for your business. All plans include a 14-day free trial.
+              Choose the plan that's right for your business. Start with a 30-day free trial.
             </p>
-
-            {/* Billing Toggle */}
-            <div className="inline-flex items-center gap-4 bg-card rounded-full p-2 border border-border/50">
-              <button
-                onClick={() => setIsAnnual(false)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                  !isAnnual 
-                    ? "bg-primary text-primary-foreground shadow-lg" 
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setIsAnnual(true)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
-                  isAnnual 
-                    ? "bg-primary text-primary-foreground shadow-lg" 
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                6 Months
-                <span className="text-xs bg-accent text-accent-foreground px-2 py-0.5 rounded-full">
-                  Save 20%
-                </span>
-              </button>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -220,13 +184,14 @@ export default function Pricing() {
                   <div className="mb-6">
                     <div className="flex items-baseline gap-1">
                       <span className="text-4xl font-bold text-foreground">
-                        £{isAnnual ? plan.sixMonthPrice : plan.monthlyPrice}
+                        £{plan.price}
                       </span>
-                      <span className="text-muted-foreground">/month</span>
+                      <span className="text-muted-foreground">/{plan.billingPeriod}</span>
                     </div>
-                    {isAnnual && (
-                      <p className="text-sm text-primary mt-1">
-                        Billed £{plan.sixMonthPrice * 6} every 6 months
+                    {plan.originalPrice && (
+                      <p className="text-sm text-muted-foreground mt-1">
+                        <span className="line-through">£{plan.originalPrice}</span>
+                        <span className="text-primary ml-2 font-medium">Save £{(plan.originalPrice - plan.price).toFixed(2)}</span>
                       </p>
                     )}
                   </div>
@@ -257,40 +222,6 @@ export default function Pricing() {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Trusted by 2,000+ Businesses
-            </h2>
-            <p className="text-muted-foreground">
-              Join thousands of companies already using InstaCrew
-            </p>
-          </motion.div>
-
-          <div className="flex flex-wrap justify-center gap-8 opacity-50">
-            {["Company A", "Company B", "Company C", "Company D", "Company E"].map((company, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-2xl font-bold text-muted-foreground"
-              >
-                {company}
               </motion.div>
             ))}
           </div>
@@ -363,7 +294,7 @@ export default function Pricing() {
               Start Your Free Trial Today
             </h2>
             <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              No credit card required. Cancel anytime. Full access for 14 days.
+              No credit card required. Cancel anytime. Full access for 30 days.
             </p>
             <Button size="lg" variant="secondary" className="group">
               Get Started Free

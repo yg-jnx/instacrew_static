@@ -120,7 +120,7 @@ export function ValueProps() {
                 <p className="text-muted-foreground leading-relaxed">
                   InstaCrew helps business owners post shifts in minutes, review applicants, assign the right people, 
                   and manage the full shift lifecycle—from clock-in/out to disputes—without juggling spreadsheets, 
-                  calls, and no-shows. Business accounts start with a 14-day free trial.
+                  calls, and no-shows. Business accounts start with a 30-day free trial.
                 </p>
 
                 <FeatureList features={businessFeatures} color="primary" />
