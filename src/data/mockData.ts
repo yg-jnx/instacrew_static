@@ -1,10 +1,10 @@
-// Mock data for InstaCrew website
+// Approved data for InstaCrew website
 
 export const heroContent = {
   headlines: [
     "Fill open shifts fast with verified local crew.",
     "Post shifts, screen applicants, hire in hours, not days.",
-    "One platform for shifts, verification, and time tracking.",
+    "One platform for shifts, verification, and scheduling.",
   ],
   taglines: [
     "Staffing that moves at shift speed.",
@@ -12,7 +12,7 @@ export const heroContent = {
     "Real-time hiring for real-world teams.",
   ],
   ctas: [
-    { text: "Start 14-day free trial", href: "/signup", variant: "primary" as const },
+    { text: "Start 30-day free trial", href: "/signup", variant: "primary" as const },
     { text: "Create a verified crew profile", href: "/signup/crew", variant: "secondary" as const },
     { text: "See how InstaCrew works", href: "#how-it-works", variant: "outline" as const },
   ],
@@ -30,11 +30,6 @@ export const features = [
     description: "Every crew member submits ID, right-to-work docs, and qualifications for your peace of mind.",
   },
   {
-    icon: "Clock",
-    title: "Real-Time Clock In/Out",
-    description: "GPS-verified time tracking with automatic timesheets. No more guesswork or manual entry.",
-  },
-  {
     icon: "Users",
     title: "Smart Applicant Matching",
     description: "Filter by skills, ratings, and availability. Review profiles and hire the right person fast.",
@@ -48,6 +43,11 @@ export const features = [
     icon: "Star",
     title: "Two-Way Ratings",
     description: "Build trust with mutual reviews after every shift. Quality rises to the top.",
+  },
+  {
+    icon: "MapPin",
+    title: "Location-Based Search",
+    description: "Find crew near your business or discover shifts in your area. Distance matters.",
   },
 ];
 
@@ -65,8 +65,8 @@ export const howItWorks = {
     },
     {
       step: 3,
-      title: "Track & Manage",
-      description: "Monitor clock-ins, approve hours, and manage all from one dashboard.",
+      title: "Manage & Communicate",
+      description: "Coordinate with crew, handle changes, and leave ratings after shift completion.",
     },
   ],
   crew: [
@@ -82,8 +82,8 @@ export const howItWorks = {
     },
     {
       step: 3,
-      title: "Work & Get Paid",
-      description: "Clock in/out with GPS verification. Track your earnings and build your reputation.",
+      title: "Work & Build Reputation",
+      description: "Complete shifts, earn ratings, and grow your profile. Build your reputation over time.",
     },
   ],
 };
@@ -104,14 +104,14 @@ export const testimonials = [
     avatar: "MJ",
   },
   {
-    quote: "The clock in/out feature alone saves us 5+ hours of admin work every week. No more timesheet disputes.",
+    quote: "The platform is intuitive and the verification process gives me confidence in who I'm hiring.",
     author: "Elena Rodriguez",
     role: "Restaurant Owner",
     company: "Cocina Fresca",
     avatar: "ER",
   },
   {
-    quote: "I picked up 12 shifts last month—all flexible, all paid on time. Best side gig platform I've used.",
+    quote: "I picked up 12 shifts last month—all flexible, all clearly described. Best platform I've used.",
     author: "James Okonkwo",
     role: "Hospitality Professional",
     company: "Verified Crew Member",
@@ -129,243 +129,207 @@ export const stats = [
 export const trustBadges = [
   "256-bit SSL Encryption",
   "GDPR Compliant",
-  "PCI DSS via Stripe",
-  "SOC 2 Type II",
+  "Right-to-Work Verified",
+  "Secure Document Storage",
 ];
 
 export const pricingPlans = [
   {
-    name: "Starter",
-    description: "For small businesses getting started",
-    monthlyPrice: 49,
-    sixMonthPrice: 39,
+    name: "Free Trial",
+    description: "Perfect for getting started",
+    monthlyPrice: 0,
+    sixMonthPrice: 0,
+    duration: "30 days",
     features: [
-      "Up to 20 shifts/month",
-      "5 team members",
-      "Basic applicant filtering",
-      "Clock in/out tracking",
+      "Unlimited shifts",
+      "Full crew management",
+      "Complete platform access",
+      "Profile verification",
       "Email support",
     ],
     cta: "Start free trial",
     popular: false,
   },
   {
-    name: "Professional",
-    description: "For growing teams with regular shifts",
-    monthlyPrice: 129,
-    sixMonthPrice: 99,
+    name: "Monthly",
+    description: "Pay month-to-month with flexibility",
+    monthlyPrice: 19.99,
+    sixMonthPrice: null,
+    duration: "per month",
     features: [
-      "Unlimited shifts",
-      "25 team members",
-      "Advanced filtering & matching",
-      "Priority applicant access",
-      "Multi-location support",
-      "Analytics dashboard",
+      "Unlimited shift posts",
+      "Unlimited crew applications",
+      "Advanced filtering & search",
+      "Two-way ratings system",
+      "Push notifications",
       "Priority support",
+      "Cancel anytime",
     ],
-    cta: "Start free trial",
-    popular: true,
+    cta: "Subscribe monthly",
+    popular: false,
   },
   {
-    name: "Enterprise",
-    description: "For large organizations with complex needs",
-    monthlyPrice: null,
-    sixMonthPrice: null,
+    name: "6-Month Plan",
+    description: "Best value for committed businesses",
+    monthlyPrice: 19.99,
+    sixMonthPrice: 99.99,
+    duration: "billed every 6 months",
     features: [
-      "Everything in Professional",
-      "Unlimited team members",
-      "Custom integrations",
-      "Dedicated account manager",
-      "SLA guarantees",
-      "Custom reporting",
-      "On-site training",
+      "Everything in Monthly",
+      "17% cost savings",
+      "Priority customer support",
+      "Early access to new features",
+      "Shift analytics dashboard",
+      "Bulk shift posting",
     ],
-    cta: "Contact sales",
-    popular: false,
+    cta: "Subscribe 6-month",
+    popular: true,
   },
 ];
 
+// FAQ Data Structure
+interface FAQItem {
+  question: string;
+  answer: string;
+  category: 'general' | 'business' | 'crew' | 'subscription' | 'account';
+}
+
+export const FAQ_DATA: FAQItem[] = [
+  // General
+  {
+    question: 'What is InstaCrew?',
+    answer: 'InstaCrew is a platform that connects businesses with skilled crew members for temporary shifts in hospitality, retail, and service industries. Businesses can post shifts and crew members can browse and apply for work that matches their skills.',
+    category: 'general',
+  },
+  {
+    question: 'How do I contact support?',
+    answer: 'You can email us at support@instacrew.co.uk and our team will get back to you within 24 hours. For urgent issues, please mention "URGENT" in your subject line.',
+    category: 'general',
+  },
+  {
+    question: 'Is my data secure?',
+    answer: 'Yes, we take data security seriously. All sensitive information is encrypted, and we comply with UK GDPR regulations. We never store sensitive personal information beyond what\'s necessary for verification.',
+    category: 'general',
+  },
+
+  // Business Owner FAQs
+  {
+    question: 'How does the free trial work?',
+    answer: 'New business accounts get 30 days of free access to all premium features. You can post unlimited shifts, manage crew, and access all platform features. No credit card required to start the trial.',
+    category: 'business',
+  },
+  {
+    question: 'How do I post a shift?',
+    answer: 'After completing your business profile, tap the "+" button on the dashboard or go to "Shifts" tab. Fill in shift details including role, date, time, location, and pay rate. Once posted, crew members can browse and apply.',
+    category: 'business',
+  },
+  {
+    question: 'How do I pay crew members?',
+    answer: 'InstaCrew does not process payments between businesses and crew. You arrange payment directly with crew members (bank transfer, cash, etc.). The pay rate shown on shifts is for crew information only.',
+    category: 'business',
+  },
+  {
+    question: 'Can I cancel a shift after posting?',
+    answer: 'Yes, you can cancel shifts from the shift details page. If crew members have already applied or been accepted, they will be notified of the cancellation. Please cancel as early as possible to respect crew members\' time.',
+    category: 'business',
+  },
+  {
+    question: 'How do I manage my crew applications?',
+    answer: 'Go to your shift details to see all applicants. You can view their profiles, ratings, experience, and documents. Accept or reject applications with one tap.',
+    category: 'business',
+  },
+
+  // Crew Member FAQs
+  {
+    question: 'How do I find shifts?',
+    answer: 'After completing your crew profile and verification, go to the "Browse" tab to see available shifts near you. Use filters to search by role, location, pay rate, and date.',
+    category: 'crew',
+  },
+  {
+    question: 'How do I apply for a shift?',
+    answer: 'Open any shift from the browse page, review the details, and tap "Apply Now". The business will review your profile and either accept or decline your application. You\'ll receive a notification either way.',
+    category: 'crew',
+  },
+  {
+    question: 'What documents do I need to work?',
+    answer: 'UK crew members need proof of Right to Work (passport, BRP, or share code). You may also need to upload a profile photo and other documents depending on the role. All documents are verified before you can apply for shifts.',
+    category: 'crew',
+  },
+  {
+    question: 'How do I get paid for shifts?',
+    answer: 'Payment is arranged directly between you and the business. InstaCrew does not process payments. Discuss payment method (bank transfer, cash, etc.) with the business before starting the shift.',
+    category: 'crew',
+  },
+  {
+    question: 'Can I cancel a shift after being accepted?',
+    answer: 'Yes, but please cancel as early as possible from "My Shifts" tab. Frequent cancellations may affect your reliability rating and future applications.',
+    category: 'crew',
+  },
+  {
+    question: 'How do ratings work?',
+    answer: 'After completing a shift, businesses can rate your performance. Your overall rating is visible to other businesses and helps build your reputation. Similarly, you can rate businesses on reliability, communication, and payment accuracy.',
+    category: 'crew',
+  },
+
+  // Subscription FAQs
+  {
+    question: 'What subscription plans are available?',
+    answer: 'We offer Monthly (£29.99/month) and 6-Month (£149.99/6 months) plans for businesses. Both include unlimited shift posts, crew management, and full platform access. Crew accounts are always free.',
+    category: 'subscription',
+  },
+  {
+    question: 'Can I cancel my subscription anytime?',
+    answer: 'Yes, you can cancel anytime from Manage Subscription. You\'ll keep access until the end of your current billing period. No refunds for partial months.',
+    category: 'subscription',
+  },
+  {
+    question: 'What happens after my trial ends?',
+    answer: 'After your 30-day trial, you\'ll need to subscribe to continue posting shifts. Your existing shifts and crew data will be saved. You can choose Monthly or 6-Month plans.',
+    category: 'subscription',
+  },
+  {
+    question: 'How do I update my payment method?',
+    answer: 'Go to Profile > Manage Subscription > Payment Method. You\'ll be redirected to our secure payment portal where you can update your card details.',
+    category: 'subscription',
+  },
+
+  // Account FAQs
+  {
+    question: 'How do I verify my account?',
+    answer: 'After signup, complete your profile with required information and documents. For crew accounts, upload Right to Work documents. Verification usually takes 24-48 hours.',
+    category: 'account',
+  },
+  {
+    question: 'I forgot my password. What do I do?',
+    answer: 'On the login page, tap "Forgot Password?". Enter your email and we\'ll send you a reset link. Check your spam folder if you don\'t see it within a few minutes.',
+    category: 'account',
+  },
+  {
+    question: 'Can I have both Business and Crew accounts?',
+    answer: 'No, each email can only be registered as either a Business or Crew account. If you need both, please use different email addresses.',
+    category: 'account',
+  },
+  {
+    question: 'How do I delete my account?',
+    answer: 'Please email support@instacrew.co.uk with "Delete Account" in the subject line. We\'ll process your request within 7 days. Note: This action is permanent and cannot be undone.',
+    category: 'account',
+  },
+];
+
+export const FAQ_CATEGORIES = [
+  { id: 'all', label: 'All', icon: 'Grid' },
+  { id: 'general', label: 'General', icon: 'HelpCircle' },
+  { id: 'business', label: 'Business', icon: 'Briefcase' },
+  { id: 'crew', label: 'Crew', icon: 'Users' },
+  { id: 'subscription', label: 'Subscription', icon: 'CreditCard' },
+  { id: 'account', label: 'Account', icon: 'User' },
+];
+
+// Legacy FAQ structure for backwards compatibility (if needed)
 export const faqCategories = {
-  account: [
-    {
-      q: "How do I create a business owner account?",
-      a: "Click 'Start free trial' and select 'Business Owner'. You'll need your business details and a valid email. Verification typically takes 24-48 hours.",
-    },
-    {
-      q: "How do I create a crew member account?",
-      a: "Select 'Create a verified crew profile' and follow the steps to upload your ID, right-to-work documents, and any relevant qualifications.",
-    },
-    {
-      q: "Can I use InstaCrew on multiple devices?",
-      a: "Yes! Your account syncs across all devices. Log in on web, iOS, or Android and pick up where you left off.",
-    },
-    {
-      q: "How do I reset my password?",
-      a: "Click 'Forgot password' on the login page. We'll send a secure reset link to your registered email address.",
-    },
-    {
-      q: "How do I update my profile information?",
-      a: "Go to Settings > Profile to update your details. Some changes (like legal documents) may require re-verification.",
-    },
-    {
-      q: "Can I switch between business and crew accounts?",
-      a: "You'll need separate accounts for each role to maintain verification integrity. Use different email addresses.",
-    },
-  ],
-  postingShifts: [
-    {
-      q: "How do I post a new shift?",
-      a: "From your dashboard, click 'Post Shift'. Fill in the role, date/time, location, pay rate, and any requirements. Preview and publish.",
-    },
-    {
-      q: "Can I edit a shift after posting?",
-      a: "Yes, you can edit shift details until someone is assigned. After assignment, only certain fields can be modified.",
-    },
-    {
-      q: "How do I cancel a shift?",
-      a: "Open the shift and click 'Cancel Shift'. If crew are already assigned, they'll be notified automatically.",
-    },
-    {
-      q: "What information should I include in a shift posting?",
-      a: "Include role title, detailed description, required skills/certifications, dress code, location (with parking info), and accurate pay rate.",
-    },
-    {
-      q: "How far in advance can I post shifts?",
-      a: "You can post shifts up to 90 days in advance. For recurring shifts, use our repeat scheduling feature.",
-    },
-    {
-      q: "Can I require specific qualifications for a shift?",
-      a: "Yes! Set required certifications, experience levels, or ratings when posting. Only qualified crew can apply.",
-    },
-  ],
-  applying: [
-    {
-      q: "How do I find and apply for shifts?",
-      a: "Browse available shifts in the 'Find Work' tab. Filter by location, pay, and type. Tap 'Apply' on any shift you want.",
-    },
-    {
-      q: "Can I withdraw my application?",
-      a: "Yes, you can withdraw applications before being assigned. Once assigned, withdrawals follow our 5-hour rule.",
-    },
-    {
-      q: "What happens after I apply?",
-      a: "The business reviews your profile and either accepts or declines. You'll receive push notifications for all updates.",
-    },
-    {
-      q: "Why was my application declined?",
-      a: "Common reasons include: another applicant was selected, missing qualifications, or schedule conflicts. Keep applying!",
-    },
-    {
-      q: "How can I improve my chances of getting hired?",
-      a: "Complete your profile, maintain high ratings, respond quickly to assignments, and build experience across shift types.",
-    },
-    {
-      q: "Can I apply for multiple shifts at once?",
-      a: "Yes, but be mindful of scheduling conflicts. The app warns you about overlapping applications.",
-    },
-  ],
-  // payments: [
-  //   {
-  //     q: "How do payments work?",
-  //     a: "Businesses pay through Stripe. Crew members receive payments to their linked bank account after shift completion and approval.",
-  //   },
-  //   {
-  //     q: "When will I get paid for a shift?",
-  //     a: "Payments are processed within 2-3 business days after the business approves your timesheet.",
-  //   },
-  //   {
-  //     q: "What payment methods do you accept?",
-  //     a: "We accept all major credit/debit cards, bank transfers, and digital wallets through our secure Stripe integration.",
-  //   },
-  //   {
-  //     q: "How do I view my payment history?",
-  //     a: "Go to 'Earnings' in your dashboard to see all past payments, pending amounts, and download statements.",
-  //   },
-  //   {
-  //     q: "Are there any fees for crew members?",
-  //     a: "InstaCrew is free for crew members. You receive 100% of your agreed shift rate.",
-  //   },
-  //   {
-  //     q: "How do I dispute a payment issue?",
-  //     a: "Open the shift in your history and click 'Raise Dispute'. Our team reviews within 48 hours.",
-  //   },
-  // ],
-  verification: [
-    {
-      q: "What documents do I need for verification?",
-      a: "Crew: Government ID, right-to-work proof, and any role-specific certifications. Business: Business registration and ownership verification.",
-    },
-    {
-      q: "How long does verification take?",
-      a: "Most verifications complete within 24-48 hours. Complex cases may take up to 5 business days.",
-    },
-    {
-      q: "Why was my verification rejected?",
-      a: "Common reasons: blurry documents, expired IDs, or mismatched information. You can resubmit with correct documents.",
-    },
-    {
-      q: "Do I need to re-verify my documents?",
-      a: "Yes, when documents expire (e.g., ID, certifications) you'll be prompted to upload current versions.",
-    },
-    {
-      q: "Is my personal data secure?",
-      a: "Absolutely. Documents are encrypted, stored securely, and only accessed for verification. See our Privacy Policy.",
-    },
-    {
-      q: "Can I work while my verification is pending?",
-      a: "No, you must be fully verified before applying to shifts. This protects both you and businesses.",
-    },
-  ],
-  disputes: [
-    {
-      q: "How do I raise a dispute?",
-      a: "Open the relevant shift and click 'Raise Dispute'. Describe the issue clearly and attach any evidence.",
-    },
-    {
-      q: "What can I dispute?",
-      a: "Payment discrepancies, unfair ratings, no-shows, workplace issues, or any violation of our terms.",
-    },
-    {
-      q: "How long do dispute resolutions take?",
-      a: "We aim to resolve disputes within 48-72 hours. Complex cases may require additional investigation.",
-    },
-    {
-      q: "What happens during a dispute investigation?",
-      a: "Both parties submit their account. Our team reviews evidence and may contact either party for clarification.",
-    },
-    {
-      q: "Can I appeal a dispute decision?",
-      a: "Yes, you have 7 days to appeal with new evidence. Final decisions are binding.",
-    },
-    {
-      q: "Will disputes affect my account standing?",
-      a: "Frivolous disputes may impact your reputation. Legitimate concerns are encouraged and won't harm you.",
-    },
-  ],
-  troubleshooting: [
-    {
-      q: "I can't log into my account. What should I do?",
-      a: "Try resetting your password. If issues persist, clear your browser cache or reinstall the app. Contact support if needed.",
-    },
-    {
-      q: "Push notifications aren't working.",
-      a: "Check your device settings to ensure InstaCrew notifications are enabled. Also check in-app notification preferences.",
-    },
-    {
-      q: "GPS clock-in isn't working.",
-      a: "Ensure location permissions are enabled for InstaCrew. Stand in an open area for better GPS signal.",
-    },
-    {
-      q: "The app is running slowly.",
-      a: "Update to the latest version, clear cache, or restart your device. Ensure stable internet connection.",
-    },
-    {
-      q: "I can't upload documents.",
-      a: "Ensure files are under 10MB and in supported formats (PDF, JPG, PNG). Try a different browser if on web.",
-    },
-    {
-      q: "My shift isn't appearing on the dashboard.",
-      a: "Refresh the page or pull down to refresh on mobile. Check your filters aren't hiding the shift.",
-    },
-  ],
+  general: FAQ_DATA.filter(faq => faq.category === 'general').map(faq => ({ q: faq.question, a: faq.answer })),
+  business: FAQ_DATA.filter(faq => faq.category === 'business').map(faq => ({ q: faq.question, a: faq.answer })),
+  crew: FAQ_DATA.filter(faq => faq.category === 'crew').map(faq => ({ q: faq.question, a: faq.answer })),
+  subscription: FAQ_DATA.filter(faq => faq.category === 'subscription').map(faq => ({ q: faq.question, a: faq.answer })),
+  account: FAQ_DATA.filter(faq => faq.category === 'account').map(faq => ({ q: faq.question, a: faq.answer })),
 };

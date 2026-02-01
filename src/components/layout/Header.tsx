@@ -12,6 +12,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/Logo";
 
 const navigation = {
   solutions: [
@@ -19,8 +20,7 @@ const navigation = {
     { name: "For Crew Members", href: "/crew", description: "Find shifts that fit your schedule" },
   ],
   resources: [
-    { name: "Help Center", href: "/help", description: "FAQs and support articles" },
-    { name: "Developer Docs", href: "/developers", description: "API reference and integrations" },
+    { name: "Help Center", href: "/help", description: "FAQs and support articles" }
   ],
 };
 
@@ -33,18 +33,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary">
-            <img 
-      src="/main-logo.jpeg" 
-      alt="InstaCrew Logo" 
-      className="h-full w-full object-cover"
-    />
-          </div>
-         
-        </Link>
-
+        <Logo className="flex-shrink-0" />
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex lg:items-center lg:gap-1">
           <NavigationMenu>

@@ -181,7 +181,7 @@ export function Hero() {
                 <Button size="lg" asChild className="min-w-[220px] gap-2 shadow-glow group relative overflow-hidden">
                   <Link to="/signup">
                     <span className="relative z-10 flex items-center gap-2">
-                      Start 14-day free trial
+                      Start 30-day free trial
                       <motion.span
                         animate={{ x: [0, 4, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
@@ -212,7 +212,7 @@ export function Hero() {
                 transition={{ delay: 0.8 }}
                 className="mt-6 text-sm text-muted-foreground"
               >
-                No credit card required • 14-day free trial • Cancel anytime
+                No credit card required • 30-day free trial • Cancel anytime
               </motion.p>
               
           </div>

@@ -69,6 +69,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // InstaCrew Brand Colors (added, won't conflict with HSL system)
+        brand: {
+          navy: "#2F5396",      // "Insta" navy blue from logo
+          teal: "#1ABC9C",      // "Crew" teal green from logo
+          "navy-dark": "#264278",
+          "navy-light": "#5C87C7",
+          "teal-dark": "#15967D",
+          "teal-light": "#48C7AF",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
@@ -133,7 +142,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 } satisfies Config;

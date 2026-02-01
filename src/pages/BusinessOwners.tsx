@@ -97,7 +97,7 @@ export default function BusinessOwners() {
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Stop scrambling for last-minute coverage. InstaCrew connects you with verified, 
-                reliable crew members in minutes—not days.
+                reliable crew members in minutes not days.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" className="group" asChild>
@@ -318,7 +318,7 @@ export default function BusinessOwners() {
               Ready to Transform Your Staffing?
             </h2>
             <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              Start your 14-day free trial today. No credit card required.
+              Start your 30-day free trial today. No credit card required.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" variant="secondary" className="group" asChild>

@@ -4,7 +4,7 @@ import { Features } from "@/components/home/Features";
 import { ValueProps } from "@/components/home/ValueProps";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Stats, TrustBadges } from "@/components/home/Stats";
-import { Testimonials } from "@/components/home/Testimonials";
+// import { Testimonials } from "@/components/home/Testimonials";
 import { CTASection } from "@/components/home/CTASection";
 
 const Index = () => {
@@ -16,7 +16,7 @@ const Index = () => {
       <Features />
       <HowItWorks />
       <Stats />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTASection />
     </Layout>
   );
